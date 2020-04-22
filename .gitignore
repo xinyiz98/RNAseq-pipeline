@@ -37,3 +37,20 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# fastq files
+.fastq
+.fastq.gz
+
+# fasta files
+.fasta
+.fasta.gz
+
+# large images
+.tiff
+
+# alignment output
+.h5
+.tsv
+.sf
+.gz
