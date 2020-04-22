@@ -39,18 +39,18 @@ vignettes/*.pdf
 .Renviron
 
 # fastq files
-.fastq
-.fastq.gz
+*.fastq
+*.fastq.gz
 
 # fasta files
-.fasta
-.fasta.gz
+*.fasta
+*.fasta.gz
 
 # large images
-.tiff
+*.tiff
 
 # alignment output
-.h5
-.tsv
-.sf
-.gz
+*.h5
+*.tsv
+*.sf
+*.gz

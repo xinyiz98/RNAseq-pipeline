@@ -1,0 +1,22 @@
+{
+    "read_files": "( ./Batch2/Sample_PD10_HYY_M1_index2/Sample_PD10_HYY_M1_index2.1.clean.fq.gz, ./Batch2/Sample_PD10_HYY_M1_index2/Sample_PD10_HYY_M1_index2.2.clean.fq.gz )",
+    "expected_format": "IU",
+    "compatible_fragment_ratio": 0.9971570033804388,
+    "num_compatible_fragments": 5107849,
+    "num_assigned_fragments": 5122412,
+    "num_consistent_mappings": 12237711,
+    "num_inconsistent_mappings": 360869,
+    "strand_mapping_bias": 0.4965826534063437,
+    "MSF": 0,
+    "OSF": 5520,
+    "ISF": 6160676,
+    "MSR": 0,
+    "OSR": 5209,
+    "ISR": 6077035,
+    "SF": 162490,
+    "SR": 161113,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}

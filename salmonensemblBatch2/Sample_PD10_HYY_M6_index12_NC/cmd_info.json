@@ -1,0 +1,11 @@
+{
+    "salmon_version": "0.8.1",
+    "index": "./salmon_ensembl_idx",
+    "libType": "A",
+    "mates1": "./Batch2/b212/Sample_PD10_HYY_M6_index12/Sample_PD10_HYY_M6_index12.1.clean.fq.gz",
+    "mates2": "./Batch2/b212/Sample_PD10_HYY_M6_index12/Sample_PD10_HYY_M6_index12.2.clean.fq.gz",
+    "threads": "8",
+    "output": "salmonensemblBatch2/b212/Sample_PD10_HYY_M6_index12",
+    "numBootstraps": "100",
+    "auxDir": "aux_info"
+}

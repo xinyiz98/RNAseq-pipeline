@@ -1,0 +1,11 @@
+{
+    "salmon_version": "0.8.1",
+    "index": "./salmon_ensembl_idx",
+    "libType": "A",
+    "mates1": "./Batch3/Sample_PD10_HYY_T7C/Sample_PD10_HYY_T7C.1.clean.fq.gz",
+    "mates2": "./Batch3/Sample_PD10_HYY_T7C/Sample_PD10_HYY_T7C.2.clean.fq.gz",
+    "threads": "8",
+    "output": "salmonensemblBatch3/Sample_PD10_HYY_T7C",
+    "numBootstraps": "100",
+    "auxDir": "aux_info"
+}

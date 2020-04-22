@@ -1,0 +1,12 @@
+INFO [2017-06-21 15:01:23] [[1]]
+INFO [2017-06-21 15:01:23] vennlist_input
+INFO [2017-06-21 15:01:23] 
+INFO [2017-06-21 15:01:23] $filename
+INFO [2017-06-21 15:01:23] paste0(comparisonname, batch[[j]], deiname, ".tiff")
+INFO [2017-06-21 15:01:23] 
+INFO [2017-06-21 15:01:23] $width
+INFO [2017-06-21 15:01:23] [1] 4000
+INFO [2017-06-21 15:01:23] 
+INFO [2017-06-21 15:01:23] $fill
+INFO [2017-06-21 15:01:23] c("cornflowerblue", "green", "yellow", "darkorchid1")
+INFO [2017-06-21 15:01:23] 

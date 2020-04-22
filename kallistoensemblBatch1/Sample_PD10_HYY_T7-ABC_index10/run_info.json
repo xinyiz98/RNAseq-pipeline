@@ -1,0 +1,9 @@
+{
+	"n_targets": 107368,
+	"n_bootstraps": 100,
+	"n_processed": 6650737,
+	"kallisto_version": "0.43.1",
+	"index_version": 10,
+	"start_time": "Wed Jun 14 21:46:40 2017",
+	"call": "C:\UCBERKELEY\ASlab\rna-seq\data\kallisto\kallisto.exe quant -i ./kallisto/txpt_ensemblcdnaall.idx -o kallistoensemblBatch1/Sample_PD10_HYY_T7-ABC_index10 -b 100 ./Batch1/Sample_PD10_HYY_T7-ABC_index10/Sample_PD10_HYY_T7-ABC_index10.1.clean.fq.gz ./Batch1/Sample_PD10_HYY_T7-ABC_index10/Sample_PD10_HYY_T7-ABC_index10.2.clean.fq.gz"
+}
