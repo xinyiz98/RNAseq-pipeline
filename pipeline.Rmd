@@ -42,6 +42,10 @@ Salmon is not supported on Windows, as of version 1.2.0
 The versions used while constructing this pipeline is listed in parentheses  
 FastQC(v0.11.8): http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 Salmon(0.8.2):https://salmon.readthedocs.io/en/latest/index.html [@patro_salmon_2017]
+R packages:
+
+- limma 3.32.10 [@ritchie_limma_2015]
+- biomaRt 2.32.1
 
 
 ##Pipeline
@@ -224,20 +228,20 @@ simulateLib_polyester(refPath,ngroup,ndata,deprob,savepath_fcmtx,savepath_lib)
 ####Comparisons of mapping rates
 Mapping rates between Salmon and kallisto are comparible when using ensemble and UCSC as the references.Mapping rates can be found as outputs of Salmon and Kallisto
 
-![](simAlign/results/MappingRates.jpeg)
+![](simAlign/results/MappingRates.jpeg){ width=70% }
 
 ####Comparisons of quantification errors
 
 percent error of transcript X = abs(estimated transcript count of X - actual count of X)/actual count of X * 100
-![](simAlign/results/quantError.png)
+![](simAlign/results/quantError.png){ width=70% }
 
 ####Impacts of reference and (pseudo-)alignment methods on downstream DE analysis {#ref_align_deagreement}
 We compared the impacts on two DE algorithms: DEseq2 and limma-voom. To reproduce our results, run deAgreement.R (results will be stored in simAlign/results/deagreement). This detects DE between two time points in our alpha-syn experiment (T2 and T7).
 
 Two examples using DEseq2 and voom are shown below.
 
-![](simAlign/results/deagreement/compressedExamples/pvalue05Batch1deseq2.jpg)
-![](simAlign/results/deagreement/compressedExamples/pvalue05Batch1voom.jpg)
+![](simAlign/results/deagreement/compressedExamples/pvalue05Batch1deseq2.jpg){ width=70% }
+![](simAlign/results/deagreement/compressedExamples/pvalue05Batch1voom.jpg){ width=70% }
 
 
 ##Normalization and DE analysis
@@ -248,17 +252,67 @@ To test the performance given datasets with distinct features, we simulated
 - 23 datasets with 11 varying parameters
 - 11 empirically simulated datasets with 5 varying parameters
 
-![](testdata/parameters.png)
+![](testdata/parameters.png){ width=70% }
 
 All simulations used Splatter [@zappia_splatter:_2017] with dropout rate equals to zero. Fixed parameters of the empirical simulations were derived from a dataset by Bottomly et al [@bottomly_evaluating_2011]. 
 
 ###Simulation results
+We tested the following combinations of normalization and DE analysis methods:
 
-###Run simulation
-```{r}
+- edgeR with
+    - TPM
+    - FPKM
+    - *Trimmed Mean of M-values (TMM), default normalization of edgeR*
+    - Relative Log Expression (RLE)
+    - Upper Quartile (UQ)
+    - RUVg + TMM
+    - RUVg (remove unwanted variation) + RLE
+    - RUVg + UQ
+    - DEGES (DEG elimination strategy) + TMM
+    - DEGES + RLE, DEGES + TbT
+    
+- DEGES with
+    - DESeq2
+    - baySeq
+    - edgeR
+    - limma-voom 
+    
+- baySeq, DESeq2, and limma-voom with their default normalization methods
 
+The benchmark results can be found in testdata/normtestresults and testdata/DEtestresults  
+The simulated datasets can be found in testdata/simulatedData  
+To reproduce our results, see the [next section](#de_simtest)  
+
+Choice of normalization methods had very small impact on the benchmarking results. The ROC, accuracy vs FDR, and FDR control curves are comparable for all normalizations. An example is shown for ROC
+
+![](testdata/normtestresults/visualizedresults/roc/empsim_de.downProb_def.jpeg){ width=70% }
+
+Choice of DE analysis methods has trade-off between true positive rates and false discovery rates
+
+![](testdata/DEtestresults/visualizedderesults/tprvalue/empsim_de.downProb_def.jpeg){ width=70% }
+
+![](testdata/DEtestresults/visualizedderesults/trueFDR/empsim_de.downProb_def.jpeg){ width=70% }
+
+###Run simulation & benchmark {#de_simtest}
+Requires:
+- splatter 1.0.3 [@zappia_splatter:_2017]
+
+```{r, eval=(FALSE | runSimulation)}
+## enter the parameter values you want to test ##
+groupCells<-c(3,9,6)
+mean.shape<-c(0.4,0.8,0.6)
+mean.rate<-c(0.1,0.5,0.3)
+lib.loc<- c(6,16,11)
+lib.scale<-c(0.15,0.5,0.35)
+out.prob<-c(0.01,0.1,0.05)
+de.prob<-c(0.05,0.3,0.1)
+de.downProb<-c(0.25,0.75,0.5)
+de.facLoc<-c(0.05,0.3,0.1)
+de.facScale<-c(0.2,0.6,0.4)
+bcv.common<-c(0.05,0.2,0.1)
+
+generateSimulatedCounts(normalizationMethod,deMethod,groupCells,mean.shape,mean.rate,lib.loc,lib.scale,out.prob,de.prob,de.downProb,de.facLoc,bcv.common)
 ```
-
 
 
 #Interpretation and validation of differential expression analysis {#afterDE}

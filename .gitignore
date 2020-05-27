@@ -49,8 +49,18 @@ vignettes/*.pdf
 # large images
 *.tiff
 
+# images
+*.jpeg
+*.jpg
+*.png
+
 # alignment output
 *.h5
 *.tsv
 *.sf
 *.gz
+
+# r data
+*.rds
+*.RData
+

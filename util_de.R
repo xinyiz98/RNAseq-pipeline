@@ -202,3 +202,5 @@ filterCPM<-function(countsdf,threshCPM_byAvgColSum){
   }
   return(countsdfCPM)
 }
+
+generateSimulatedCounts<-function(normalizationMethod,deMethod,groupCells,mean.shape,mean.rate,lib.loc,lib.scale,out.prob,de.prob,de.downProb,de.facLoc,bcv.common){}
