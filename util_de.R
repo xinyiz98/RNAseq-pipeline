@@ -69,10 +69,11 @@ countdf<-function(alignmethod,reftxpt,batches,conditions,allconditions=condition
   return(counts)
 }
 
-de<-function(counts,contrast,adjust_method,nDEG='all',FDR=0.05){
+de<-function(counts,contrast, demethod,adjust_method,nDEG='all',FDR=0.05){
   #DE results for one or multiple batches
   #counts: list of count matrices; each entry is a count matrix for a batch
   #contrast: a condition to be compared against reference
+  #demethod: method for DE analysis; choose from limma, edgeR, DEseq2
   #nDEG: a positive integer or 'all'
   #return topTable result, sorted by adjusted p-value
   
@@ -111,17 +112,41 @@ de<-function(counts,contrast,adjust_method,nDEG='all',FDR=0.05){
   print(design)
   
   #DE
-  print(typeof(counts))
-  dge<-DGEList(counts,remove.zeros = TRUE)
-  print(typeof(counts))
-  dge<-calcNormFactors(dge)
-  v<-voom(dge,design=design)
-  vfit<-lmFit(v,design)
-  vfit<-eBayes(vfit)
-  print(colnames(vfit))
-  alldeg<-topTable(vfit,p.value = FDR,number = nDEG,coef=paste0('conditionpattern',contrast),adjust.method = adjust_method)
-  # alldeg<-topTable(vfit,p.value = FDR,number = nDEG,coef=paste0('batchpattern',contrast))
-  
+  if(demethod=='voom'){
+    dge<-DGEList(counts,remove.zeros = TRUE)
+    dge<-calcNormFactors(dge)
+    v<-voom(dge,design=design)
+    vfit<-lmFit(v,design)
+    vfit<-eBayes(vfit)
+    print(colnames(vfit))
+    alldeg<-topTable(vfit,p.value = FDR,coef=paste0('conditionpattern',contrast),adjust.method = adjust_method)
+    alldeg<-alldeg[order(alldeg$adj.P.Val),]
+    alldeg<-alldeg[1:min(nDEG,nrow(alldeg)),]
+  }else if (demethod=='DEseq2'){
+    mode(counts)<-'integer'
+    coldata<-data.frame(conditionpattern=conditionpattern,row.names = colnames(counts), batchpattern=batchpattern)
+    dds<-DESeqDataSetFromMatrix(counts,colData = coldata,design =~batchpattern+conditionpattern)
+    dds <- dds[ rowSums(counts(dds)) > 0, ] #remove rows with zero counts
+    dds<-DESeq(dds)
+    alldeg<-results(dds,contrast = c('conditionpattern',refcondition,contrast),pAdjustMethod =adjust_method)
+    alldeg<-alldeg[which(alldeg[['padj']]<FDR),]
+    alldeg<-alldeg[order(alldeg$padj),]
+    alldeg<-alldeg[1:min(nDEG,nrow(alldeg)),]
+  }else if (demethod=='edgeR'){
+    dge<-DGEList(counts,remove.zeros = TRUE)
+    dge<-calcNormFactors(dge)
+    dge<-estimateDisp(dge,design)
+    fit<-glmFit(dge,design)
+    res<-glmLRT(fit,coef=paste0('conditionpattern',contrast))
+    alldeg<-res$table
+    alldeg$FDR<- p.adjust(alldeg$PValue, method=adjust_method)
+    alldeg<-alldeg[which(alldeg[['FDR']]<FDR),]
+    alldeg<-alldeg[order(alldeg$FDR),]
+    alldeg<-alldeg[1:min(nDEG,nrow(alldeg)),]
+  }else{
+    print(paste('DE method',demethod,'not supported. Choose from edgeR, voom, DEseq2'))
+  }
+    
   return(alldeg)
 }
 

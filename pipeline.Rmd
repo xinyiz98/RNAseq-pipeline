@@ -89,6 +89,7 @@ kmer_length=31
 libType='A'
 
 ## DE ##
+demethod='voom' #choose from 'voom', 'edgeR', 'DEseq2'
 lowcountfilter=TRUE #if filter out low-count genes by CPM threshold
 threshCPM_byAvgColSum=1.5/10e6 #genes passing filter have averages of replicates > avgColsum*threshCPM_byAvgColSum; avgColSum = average of sums of counts of all samples; genes passing filter for each batch are calculated separately
 maxNDEG<-'all' #maximum number of genes in the output matrix
@@ -185,7 +186,7 @@ savepath<-file.path(outDir,'de')
 if(!dir.exists(savepath)){dir.create(savepath)}
 
 for(c in contrasts){
-  deresults<-de(countsdfCPM_photo2_no20mW,c,multipletesting_method,nDEG = maxNDEG,FDR = FDR)
+  deresults<-de(countsdfCPM_photo2_no20mW,c,demethod,multipletesting_method,nDEG = maxNDEG,FDR = FDR)
   
   # drawvenn(deresults,"/Users/Xinyi/rna-seq/data/n2a_prelim/de/venn_de",refcondition,c)
   genelist(deresults,savepath,paste0(c),id2symb=id2symbol,convID=convID)
