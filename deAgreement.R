@@ -53,6 +53,7 @@ names(de_res)<-de_method
 for(i in 1:length(sample_id)){
   #import transcripts
   #select transcriptome
+  print(method_id[[i]])
   if(grepl("ensembl",sample_id[[i]][[1]],fixed = TRUE)){
     ttg<-ttgensembl
     print("ensembl")
@@ -69,6 +70,7 @@ for(i in 1:length(sample_id)){
     aligni<-"kallisto"
     sample_path<-lapply(sample_id[[i]],file.path,"abundance.tsv")
   }
+  print(aligni)
     
   #DE
   #construct design matrix
@@ -113,6 +115,7 @@ for(i in 1:length(de_res)){
   }
   for(j in 1:length(batch)){
     vennlist<-dei[((j-1)*ncomp+1):(j*ncomp)]
+    commonGene<-rownames(vennlist[[1]])
     for(c in 1:length(comparison)){
       vennlist_input<-vector("list",length = length(vennlist))
       comparisonc<-comparison[[c]]
@@ -150,8 +153,73 @@ for(i in 1:length(de_res)){
         }
       }
       #draw venn diagram
-      names(vennlist_input)<-names(dei)[((j-1)*ncomp+1):(j*ncomp)]
-      venn.diagram(vennlist_input,filename = paste0(comparisonname,batch[[j]],deiname,".tiff"),width = 4000,
+      names(vennlist_input)<-c(names(dei)[((j-1)*ncomp+1):(j*ncomp)])
+      venn.diagram(vennlist_input,filename = paste0(comparisonname,batch[[j]],deiname,".jpeg"),width = 4000,
+                   fill = c("cornflowerblue", "green", "yellow", "darkorchid1"))
+    }
+  }
+}
+
+setwd("simAlign/results/deagreement_commonGene")
+#DE agreement excluding genes not shared
+for(i in 1:length(de_res)){
+  names(de_res[[i]])<-method_id
+  dei<-de_res[[i]]
+  deiname<-names(de_res)[[i]]
+  ncomp<-length(dei)/length(batch) #number of components in the diagram
+  comparison<-c(pvalue05=0.05,pvalue1=0.1,lNDE=200)
+  if(deiname=="deseq2"){
+    comparison<-c(comparison,outlier="outlier")
+  }
+  for(j in 1:length(batch)){
+    vennlist<-dei[((j-1)*ncomp+1):(j*ncomp)]
+    commonGene<-rownames(vennlist[[1]])
+    for(k in 2:length(vennlist)){
+      commonGene<-commonGene[which(commonGene %in% rownames(vennlist[[k]]))]
+    }
+    for(c in 1:length(comparison)){
+      vennlist_input<-vector("list",length = length(vennlist))
+      comparisonc<-comparison[[c]]
+      comparisonname<-names(comparison)[[c]]
+      if(grepl("pvalue",comparisonname,fixed = TRUE)){
+        for(k in 1:length(vennlist)){
+          vk<-vennlist[[k]]
+          notna<-!is.na(vk)
+          vk_input<-as.data.frame(vk[notna,]) #filter pvalue = NA
+          rownames(vk_input)<-rownames(vk)[notna]
+          bpv<-vk_input<comparisonc # get DE genes
+          bpvrownames<-rownames(vk_input)[bpv]
+          vk_input<-as.data.frame(vk_input[bpv,])
+          rownames(vk_input)<-bpvrownames
+          vennlist_input[[k]]<-rownames(vk_input)
+        }
+      }else if(grepl("lNDE",comparisonname,fixed = TRUE)){
+        for(k in 1:length(vennlist)){
+          vk<-vennlist[[k]]
+          notna<-!is.na(vk)
+          vk_input<-as.data.frame(vk[notna,]) #filter pvalue = NA
+          rownames(vk_input)<-rownames(vk)[notna]
+          pvoder<-order(-vk_input[,1]) #descending order wrt p-values
+          pvrownames<-rownames(vk_input)[pvoder]
+          vk_input<-data.frame(pvalue=vk_input[pvoder,],row.names = pvrownames)
+          vennlist_input[[k]]<-rownames(vk_input)[1:comparisonc]
+        }
+      }else if(comparisonc=="outlier"){
+        for(k in 1:length(vennlist)){
+          vk<-vennlist[[k]]
+          na<-is.na(vk)
+          vk_input<-as.data.frame(vk[na,]) #filter pvalue = NA
+          rownames(vk_input)<-rownames(vk)[na]
+          vennlist_input[[k]]<-rownames(vk_input)
+        }
+      }
+      for(k in 1:length(vennlist_input)){
+        vk<-vennlist_input[[k]]
+        vennlist_input[[k]]<-vk[which(vk %in% commonGene)]
+      }
+      #draw venn diagram
+      names(vennlist_input)<-c(names(dei)[((j-1)*ncomp+1):(j*ncomp)])
+      venn.diagram(vennlist_input,filename = paste0(comparisonname,batch[[j]],deiname,".jpeg"),width = 4000,
                    fill = c("cornflowerblue", "green", "yellow", "darkorchid1"))
     }
   }

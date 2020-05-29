@@ -150,21 +150,25 @@ drawvenn<-function(deresults,savepath,reference,contrast){
   
 }
 
-genelist<-function(deresult,savepath,filename){
+genelist<-function(deresult,savepath,filename, id2symb=NA, convID=NA){
   # gene id's with multiple symbols are annotated by the first symbol; other symbols are saved separately
   # add gene symbols to corresponding id's; store in the last column of deresult matrix
   # deresult: matrix; row names are gene id's
-  
-  id2symb<-biomaRt::getBM(attributes = c("ensembl_gene_id","mgi_symbol"),mart = ensembl)
-  id2symb<- dplyr::rename(id2symb, id = ensembl_gene_id, symbol=mgi_symbol)
-  duplicatedID<-id2symb[duplicated(id2symb[,'id']),] #save other symbols
-  id2symb<-id2symb[!duplicated(id2symb[,'id']),] #remove duplicated id's
+  if(is.na(id2symb)&is.na(convID)){
+    setwd(savepath)
+    write.csv(deresult,paste0(filename,'.csv'))
+  }
+  if(is.na(id2symb)){
+    id2symb<-biomaRt::getBM(attributes = convID,mart = ensembl)
+    # id2symb<- dplyr::rename(id2symb, id = ensembl_gene_id, symbol=mgi_symbol)  
+  }
+  duplicatedID<-id2symb[duplicated(id2symb[,convID[['id']]]),] #save other symbols
+  id2symb<-id2symb[!duplicated(id2symb[,convID[['id']]]),] #remove duplicated id's
   rownames(id2symb)<-id2symb$id
 
   # add gene symbols to deresults
   symb<-id2symb[rownames(deresult),]
-  deresult$mgi_symbol<-symb[,'symbol']
-    
+  deresult$mgi_symbol<-symb[,convID[['symbol']]]
 
   #save results
   setwd(savepath)

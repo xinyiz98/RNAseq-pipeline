@@ -1,0 +1,12 @@
+INFO [2020-05-28 14:43:41] [[1]]
+INFO [2020-05-28 14:43:41] vennlist_input
+INFO [2020-05-28 14:43:41] 
+INFO [2020-05-28 14:43:41] $filename
+INFO [2020-05-28 14:43:41] paste0(comparisonname, batch[[j]], deiname, ".jpeg")
+INFO [2020-05-28 14:43:41] 
+INFO [2020-05-28 14:43:41] $width
+INFO [2020-05-28 14:43:41] [1] 4000
+INFO [2020-05-28 14:43:41] 
+INFO [2020-05-28 14:43:41] $fill
+INFO [2020-05-28 14:43:41] c("cornflowerblue", "green", "yellow", "darkorchid1")
+INFO [2020-05-28 14:43:41] 

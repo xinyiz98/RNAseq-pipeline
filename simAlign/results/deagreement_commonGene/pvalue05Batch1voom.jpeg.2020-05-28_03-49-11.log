@@ -1,0 +1,13 @@
+INFO [2020-05-28 03:49:11] [[1]]
+INFO [2020-05-28 03:49:11] vennlist_input
+INFO [2020-05-28 03:49:11] 
+INFO [2020-05-28 03:49:11] $filename
+INFO [2020-05-28 03:49:11] paste0(comparisonname, batch[[j]], deiname, ".jpeg")
+INFO [2020-05-28 03:49:11] 
+INFO [2020-05-28 03:49:11] $width
+INFO [2020-05-28 03:49:11] [1] 4000
+INFO [2020-05-28 03:49:11] 
+INFO [2020-05-28 03:49:11] $fill
+INFO [2020-05-28 03:49:11] c("cornflowerblue", "green", "yellow", "darkorchid1", "white")
+INFO [2020-05-28 03:49:11] 
+ERROR [2020-05-28 03:49:11] Unexpected parameter length for 'fill'

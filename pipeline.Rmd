@@ -94,7 +94,9 @@ threshCPM_byAvgColSum=1.5/10e6 #genes passing filter have averages of replicates
 maxNDEG<-'all' #maximum number of genes in the output matrix
 FDR<-1 #maximum false discovery rate above which genes will not be included in output
 multipletesting_method<-'BH' #method to adjust for multiple testing; choose from "none", "BH", "BY" and "holm"
-
+### optionally provide/construct id2symbol matrix to convert gene ID to symbol, e.g. ensembl ID to MGI symbol
+id2symbol=NA #option 1: 2-column matrix - "id" column contains gene ID; "symbol" column contains gene symbols to be converted to; each row specifies conversion for one gene; duplication of id is allowed
+convID=NA #option 2: build id2symbol from biomaRt, input format c(id='name of gene ID for biomaRt attribute',symbol='name of gene symbol for biomaRt attribute'), e.g. c(id="ensembl_gene_id",symbol="mgi_symbol")
 
 ```
 
@@ -186,7 +188,7 @@ for(c in contrasts){
   deresults<-de(countsdfCPM_photo2_no20mW,c,multipletesting_method,nDEG = maxNDEG,FDR = FDR)
   
   # drawvenn(deresults,"/Users/Xinyi/rna-seq/data/n2a_prelim/de/venn_de",refcondition,c)
-  genelist(deresults,savepath,paste0(c))
+  genelist(deresults,savepath,paste0(c),id2symb=id2symbol,convID=convID)
 }
 
 ```
@@ -226,7 +228,7 @@ simulateLib_polyester(refPath,ngroup,ndata,deprob,savepath_fcmtx,savepath_lib)
 ```
 
 ####Comparisons of mapping rates
-Mapping rates between Salmon and kallisto are comparible when using ensemble and UCSC as the references.Mapping rates can be found as outputs of Salmon and Kallisto
+Mapping rates between Salmon and kallisto (0.43.1) are comparible when using ensemble and UCSC as the references.Mapping rates can be found as outputs of Salmon and Kallisto
 
 ![](simAlign/results/MappingRates.jpeg){ width=70% }
 
@@ -236,12 +238,18 @@ percent error of transcript X = abs(estimated transcript count of X - actual cou
 ![](simAlign/results/quantError.png){ width=70% }
 
 ####Impacts of reference and (pseudo-)alignment methods on downstream DE analysis {#ref_align_deagreement}
-We compared the impacts on two DE algorithms: DEseq2 and limma-voom. To reproduce our results, run deAgreement.R (results will be stored in simAlign/results/deagreement). This detects DE between two time points in our alpha-syn experiment (T2 and T7).
+We compared the impacts on two DE algorithms: DEseq2 and limma-voom. To reproduce our results, run deAgreement.R (results will be stored in simAlign/results/deagreement and simAlign/results/deagreement_commonGene). This detects DE between two time points in our alpha-syn experiment (T2 and T7).
 
 Two examples using DEseq2 and voom are shown below.
 
-![](simAlign/results/deagreement/compressedExamples/pvalue05Batch1deseq2.jpg){ width=70% }
-![](simAlign/results/deagreement/compressedExamples/pvalue05Batch1voom.jpg){ width=70% }
+![DEseq2; FDR<0.05](simAlign/results/deagreement/pvalue05Batch1deseq2.jpeg){ width=70% }
+![voom; FDR<0.05](simAlign/results/deagreement/pvalue05Batch1voom.jpeg){ width=70% }
+
+There are genes not shared by all combinations of reference and alignment method. So we also plotted the Venn diagrams with the same DE analysis results but only included genes shared by all combinations of {salmon,kallisto}x{ensembl, UCSC refSeq}. 
+
+![DEseq2; FDR<0.05](simAlign/results/deagreement_commonGene/pvalue05Batch1deseq2.jpeg){ width=70% }
+
+![voom; FDR<0.05](simAlign/results/deagreement_commonGene/pvalue05Batch1voom.jpeg){ width=70% }
 
 
 ##Normalization and DE analysis
