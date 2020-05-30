@@ -1,0 +1,22 @@
+{
+    "read_files": "( ./Batch3/Sample_PD10_HYY_T7C/Sample_PD10_HYY_T7C.1.clean.fq.gz, ./Batch3/Sample_PD10_HYY_T7C/Sample_PD10_HYY_T7C.2.clean.fq.gz )",
+    "expected_format": "IU",
+    "compatible_fragment_ratio": 0.9984479978747535,
+    "num_compatible_fragments": 12214888,
+    "num_assigned_fragments": 12233875,
+    "num_consistent_mappings": 31316476,
+    "num_inconsistent_mappings": 497734,
+    "strand_mapping_bias": 0.4976272873103602,
+    "MSF": 0,
+    "OSF": 9817,
+    "ISF": 15732543,
+    "MSR": 0,
+    "OSR": 9581,
+    "ISR": 15583933,
+    "SF": 220234,
+    "SR": 227950,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}

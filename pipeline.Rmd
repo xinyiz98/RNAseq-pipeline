@@ -239,18 +239,18 @@ percent error of transcript X = abs(estimated transcript count of X - actual cou
 ![](simAlign/results/quantError.png){ width=70% }
 
 ####Impacts of reference and (pseudo-)alignment methods on downstream DE analysis {#ref_align_deagreement}
-We compared the impacts on two DE algorithms: DEseq2 and limma-voom. To reproduce our results, run deAgreement.R (results will be stored in simAlign/results/deagreement and simAlign/results/deagreement_commonGene). This detects DE between two time points in our alpha-syn experiment (T2 and T7).
+We compared the impacts on two DE algorithms: DEseq2 and limma-voom. To reproduce our results, run deAgreement.R (results will be stored in simAlign/results/n2a_asyn/deagreement and simAlign/results/n2a_asyn/deagreement_commonGene). This detects DE between two time points in our alpha-syn experiment (T2 and T7).
 
 Two examples using DEseq2 and voom are shown below.
 
-![DEseq2; FDR<0.05](simAlign/results/deagreement/pvalue05Batch1deseq2.jpeg){ width=70% }
-![voom; FDR<0.05](simAlign/results/deagreement/pvalue05Batch1voom.jpeg){ width=70% }
+![DEseq2; FDR<0.05](simAlign/results/n2a_asyn/deagreement/pvalue05Batch1deseq2.jpeg){ width=70% }
+![voom; FDR<0.05](simAlign/results/n2a_asyn/deagreement/pvalue05Batch1voom.jpeg){ width=70% }
 
 There are genes not shared by all combinations of reference and alignment method. So we also plotted the Venn diagrams with the same DE analysis results but only included genes shared by all combinations of {salmon,kallisto}x{ensembl, UCSC refSeq}. 
 
-![DEseq2; FDR<0.05](simAlign/results/deagreement_commonGene/pvalue05Batch1deseq2.jpeg){ width=70% }
+![DEseq2; FDR<0.05](simAlign/results/n2a_asyn/deagreement_commonGene/pvalue05Batch1deseq2.jpeg){ width=70% }
 
-![voom; FDR<0.05](simAlign/results/deagreement_commonGene/pvalue05Batch1voom.jpeg){ width=70% }
+![voom; FDR<0.05](simAlign/results/n2a_asyn/deagreement_commonGene/pvalue05Batch1voom.jpeg){ width=70% }
 
 
 ##Normalization and DE analysis

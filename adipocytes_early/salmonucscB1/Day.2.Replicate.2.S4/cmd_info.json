@@ -1,0 +1,10 @@
+{
+    "salmon_version": "0.8.1",
+    "index": "./salmon_ucsc_idx",
+    "libType": "A",
+    "mates1": "/clusterfs/vector/instrumentData/streetslab/xinyi/3T3/B1/Day.2.Replicate.2.S4/Day.2.Replicate.2.S4.R1.001.fastq.gz",
+    "mates2": "/clusterfs/vector/instrumentData/streetslab/xinyi/3T3/B1/Day.2.Replicate.2.S4/Day.2.Replicate.2.S4.R2.001.fastq.gz",
+    "threads": "8",
+    "output": "salmonucscB1/Day.2.Replicate.2.S4",
+    "auxDir": "aux_info"
+}

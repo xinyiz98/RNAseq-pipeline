@@ -1,0 +1,10 @@
+{
+    "salmon_version": "0.8.2",
+    "index": "./salmon_ucsc_idx",
+    "libType": "A",
+    "mates1": "/clusterfs/vector/instrumentData/streetslab/xinyi/Batch2/Sample_PD10_HYY_M5_index9/Sample_PD10_HYY_M5_index9.1.clean.fq.gz",
+    "mates2": "/clusterfs/vector/instrumentData/streetslab/xinyi/Batch2/Sample_PD10_HYY_M5_index9/Sample_PD10_HYY_M5_index9.2.clean.fq.gz",
+    "threads": "8",
+    "output": "salmonucscBatch2/Sample_PD10_HYY_M5_index9",
+    "auxDir": "aux_info"
+}

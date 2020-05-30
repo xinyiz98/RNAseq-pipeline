@@ -1,0 +1,12 @@
+INFO [2020-05-30 03:19:27] [[1]]
+INFO [2020-05-30 03:19:27] vennlist_input
+INFO [2020-05-30 03:19:27] 
+INFO [2020-05-30 03:19:27] $filename
+INFO [2020-05-30 03:19:27] paste0("deagreement/", comparisonname, deiname, ".jpeg")
+INFO [2020-05-30 03:19:27] 
+INFO [2020-05-30 03:19:27] $width
+INFO [2020-05-30 03:19:27] [1] 4000
+INFO [2020-05-30 03:19:27] 
+INFO [2020-05-30 03:19:27] $fill
+INFO [2020-05-30 03:19:27] c("cornflowerblue", "green", "yellow", "darkorchid1")
+INFO [2020-05-30 03:19:27] 

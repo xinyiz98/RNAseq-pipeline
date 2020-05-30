@@ -1,0 +1,22 @@
+{
+    "read_files": "( ./Batch3/Sample_PD10_HYY_T24C/Sample_PD10_HYY_T24C.1.clean.fq.gz, ./Batch3/Sample_PD10_HYY_T24C/Sample_PD10_HYY_T24C.2.clean.fq.gz )",
+    "expected_format": "IU",
+    "compatible_fragment_ratio": 0.9975279916211022,
+    "num_compatible_fragments": 12302400,
+    "num_assigned_fragments": 12332887,
+    "num_consistent_mappings": 30555809,
+    "num_inconsistent_mappings": 735121,
+    "strand_mapping_bias": 0.49850183969928599,
+    "MSF": 0,
+    "OSF": 11209,
+    "ISF": 15323682,
+    "MSR": 0,
+    "OSR": 10364,
+    "ISR": 15232127,
+    "SF": 321114,
+    "SR": 333972,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}

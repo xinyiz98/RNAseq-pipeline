@@ -1,0 +1,22 @@
+{
+    "read_files": "( ./Batch3/Sample_PD10_HYY_NCA/Sample_PD10_HYY_NCA.1.clean.fq.gz, ./Batch3/Sample_PD10_HYY_NCA/Sample_PD10_HYY_NCA.2.clean.fq.gz )",
+    "expected_format": "IU",
+    "compatible_fragment_ratio": 0.9981122056125319,
+    "num_compatible_fragments": 13123327,
+    "num_assigned_fragments": 13148148,
+    "num_consistent_mappings": 33678864,
+    "num_inconsistent_mappings": 608263,
+    "strand_mapping_bias": 0.4992348613658703,
+    "MSF": 0,
+    "OSF": 12098,
+    "ISF": 16865201,
+    "MSR": 0,
+    "OSR": 11524,
+    "ISR": 16813663,
+    "SF": 268400,
+    "SR": 273974,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}

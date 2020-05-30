@@ -1,0 +1,22 @@
+{
+    "read_files": "( ./rawdata/Day.2.Replicate.2.S4.R1.001.fastq.gz, ./rawdata/Day.2.Replicate.2.S4.R2.001.fastq.gz )",
+    "expected_format": "IU",
+    "compatible_fragment_ratio": 0.9890159574905748,
+    "num_compatible_fragments": 7212027,
+    "num_assigned_fragments": 7292124,
+    "num_consistent_mappings": 18634787,
+    "num_inconsistent_mappings": 1058880,
+    "strand_mapping_bias": 0.49332482308491107,
+    "MSF": 0,
+    "OSF": 9151,
+    "ISF": 9441784,
+    "MSR": 0,
+    "OSR": 8308,
+    "ISR": 9193003,
+    "SF": 414964,
+    "SR": 401667,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}

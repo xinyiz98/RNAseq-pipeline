@@ -1,0 +1,22 @@
+{
+    "read_files": "( /clusterfs/vector/instrumentData/streetslab/xinyi/Batch2/Sample_PD10_HYY_M1_index1/Sample_PD10_HYY_M1_index1.1.clean.fq.gz, /clusterfs/vector/instrumentData/streetslab/xinyi/Batch2/Sample_PD10_HYY_M1_index1/Sample_PD10_HYY_M1_index1.2.clean.fq.gz )",
+    "expected_format": "IU",
+    "compatible_fragment_ratio": 0.9971393791636828,
+    "num_compatible_fragments": 5853611,
+    "num_assigned_fragments": 5870404,
+    "num_consistent_mappings": 10415391,
+    "num_inconsistent_mappings": 308629,
+    "strand_mapping_bias": 0.4964225538916398,
+    "MSF": 0,
+    "OSF": 4191,
+    "ISF": 5244956,
+    "MSR": 0,
+    "OSR": 3897,
+    "ISR": 5170435,
+    "SF": 138735,
+    "SR": 138627,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}

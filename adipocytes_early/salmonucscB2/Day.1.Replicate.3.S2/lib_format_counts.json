@@ -1,0 +1,22 @@
+{
+    "read_files": "( /clusterfs/vector/instrumentData/streetslab/xinyi/3T3/B2/Day.1.Replicate.3.S2/Day.1.Replicate.3.S2.R1.001.fastq.gz, /clusterfs/vector/instrumentData/streetslab/xinyi/3T3/B2/Day.1.Replicate.3.S2/Day.1.Replicate.3.S2.R2.001.fastq.gz )",
+    "expected_format": "IU",
+    "compatible_fragment_ratio": 0.9880579941682449,
+    "num_compatible_fragments": 8188417,
+    "num_assigned_fragments": 8287385,
+    "num_consistent_mappings": 15208601,
+    "num_inconsistent_mappings": 1072248,
+    "strand_mapping_bias": 0.4944466621223083,
+    "MSF": 0,
+    "OSF": 7550,
+    "ISF": 7688759,
+    "MSR": 0,
+    "OSR": 7280,
+    "ISR": 7519842,
+    "SF": 441507,
+    "SR": 436851,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}

@@ -1,0 +1,38 @@
+[2020-05-30 01:42:12.750] [jointLog] [info] parsing read library format
+[2020-05-30 01:42:12.750] [jointLog] [info] There is 1 library.
+[2020-05-30 01:48:43.229] [jointLog] [info] parsing read library format
+[2020-05-30 01:48:43.229] [jointLog] [info] There is 1 library.
+[2020-05-30 01:48:43.348] [jointLog] [info] Loading Quasi index
+[2020-05-30 01:48:43.350] [jointLog] [info] Loading 32-bit quasi index
+[2020-05-30 01:48:47.379] [jointLog] [info] done
+[2020-05-30 01:48:47.379] [jointLog] [info] Index contained 43313 targets
+[2020-05-30 01:48:48.221] [jointLog] [info] Automatically detected most likely library type as IU
+[2020-05-30 01:49:32.818] [fileLog] [info] 
+At end of round 0
+==================
+Observed 16502306 total fragments (16502306 in most recent round)
+
+[2020-05-30 01:49:32.818] [jointLog] [info] Computed 48601 rich equivalence classes for further processing
+[2020-05-30 01:49:32.818] [jointLog] [info] Counted 13960812 total reads in the equivalence classes 
+[2020-05-30 01:49:32.827] [jointLog] [info] Mapping rate = 84.5992%
+
+[2020-05-30 01:49:32.827] [jointLog] [info] finished quantifyLibrary()
+[2020-05-30 01:49:32.834] [jointLog] [info] Starting optimizer
+[2020-05-30 01:49:32.862] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2020-05-30 01:49:32.863] [jointLog] [info] iteration = 0 | max rel diff. = 284.332
+[2020-05-30 01:49:33.002] [jointLog] [info] iteration = 100 | max rel diff. = 0.105037
+[2020-05-30 01:49:33.147] [jointLog] [info] iteration = 200 | max rel diff. = 0.0540553
+[2020-05-30 01:49:33.291] [jointLog] [info] iteration = 300 | max rel diff. = 0.035891
+[2020-05-30 01:49:33.435] [jointLog] [info] iteration = 400 | max rel diff. = 0.0281781
+[2020-05-30 01:49:33.579] [jointLog] [info] iteration = 500 | max rel diff. = 0.0223238
+[2020-05-30 01:49:33.725] [jointLog] [info] iteration = 600 | max rel diff. = 0.0180048
+[2020-05-30 01:49:33.869] [jointLog] [info] iteration = 700 | max rel diff. = 0.0159668
+[2020-05-30 01:49:34.012] [jointLog] [info] iteration = 800 | max rel diff. = 0.0129648
+[2020-05-30 01:49:34.154] [jointLog] [info] iteration = 900 | max rel diff. = 0.0127884
+[2020-05-30 01:49:34.300] [jointLog] [info] iteration = 1000 | max rel diff. = 0.0123007
+[2020-05-30 01:49:34.446] [jointLog] [info] iteration = 1100 | max rel diff. = 0.0103539
+[2020-05-30 01:49:34.591] [jointLog] [info] iteration = 1200 | max rel diff. = 0.0101094
+[2020-05-30 01:49:34.613] [jointLog] [info] iteration = 1216 | max rel diff. = 0.00970699
+[2020-05-30 01:49:34.617] [jointLog] [info] Finished optimizer
+[2020-05-30 01:49:34.617] [jointLog] [info] writing output 
+

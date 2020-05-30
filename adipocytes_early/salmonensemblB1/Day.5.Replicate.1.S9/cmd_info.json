@@ -1,0 +1,11 @@
+{
+    "salmon_version": "0.8.1",
+    "index": "./salmon_ensembl_idx",
+    "libType": "A",
+    "mates1": "./rawdata/Day.5.Replicate.1.S9.R1.001.fastq.gz",
+    "mates2": "./rawdata/Day.5.Replicate.1.S9.R2.001.fastq.gz",
+    "threads": "8",
+    "output": "salmonensemblrawdata/Day.5.Replicate.1.S9",
+    "numBootstraps": "100",
+    "auxDir": "aux_info"
+}

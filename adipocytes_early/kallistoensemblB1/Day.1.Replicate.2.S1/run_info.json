@@ -1,0 +1,9 @@
+{
+	"n_targets": 107368,
+	"n_bootstraps": 100,
+	"n_processed": 13103268,
+	"kallisto_version": "0.43.1",
+	"index_version": 10,
+	"start_time": "Sat May 30 02:23:06 2020",
+	"call": "kallisto quant -i /clusterfs/rosalind/users/xinyiz/txpt_ensemblcdnaall.idx -o ./adipocytes_early/kallistoensemblB1/Day.1.Replicate.2.S1 -b 100 --threads 12 /clusterfs/vector/instrumentData/streetslab/xinyi/3T3/B1/Day.1.Replicate.2.S1/Day.1.Replicate.2.S1.R1.001.fastq.gz /clusterfs/vector/instrumentData/streetslab/xinyi/3T3/B1/Day.1.Replicate.2.S1/Day.1.Replicate.2.S1.R2.001.fastq.gz"
+}
