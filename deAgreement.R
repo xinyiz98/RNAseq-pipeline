@@ -150,7 +150,7 @@ for(i in 1:length(de_res)){
     }
     
     #draw venn diagram
-    names(vennlist_input)<-c(names(dei)[((j-1)*ncomp+1):(j*ncomp)])
+    names(vennlist_input)<-c(names(dei))
     venn.diagram(vennlist_input,filename = paste0('deagreement/',comparisonname,deiname,".jpeg"),width = 4000,
                  fill = c("cornflowerblue", "green", "yellow", "darkorchid1"))
     
@@ -160,7 +160,7 @@ for(i in 1:length(de_res)){
       vennlist_input[[k]]<-vk[which(vk %in% commonGene)]
     }
     #draw venn diagram after subset
-    names(vennlist_input)<-c(names(dei)[((j-1)*ncomp+1):(j*ncomp)])
+    names(vennlist_input)<-c(names(dei))
     venn.diagram(vennlist_input,filename = paste0('deagreement_commonGene/',comparisonname,deiname,".jpeg"),width = 4000,
                  fill = c("cornflowerblue", "green", "yellow", "darkorchid1"))
     
