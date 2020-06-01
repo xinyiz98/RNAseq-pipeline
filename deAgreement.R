@@ -77,7 +77,7 @@ for(i in 1:length(sample_id)){
       v<-voom(dge,design=design)
       vfit<-lmFit(v,design)
       vfit<-eBayes(vfit)
-      de_res$voom[[i]]<-as.data.frame(vfit$p.value[,'conditionDay.5'])
+      de_res$voom[[i]]<-vfit
     }
     if(de_method[[j]]=="deseq2"){
       #import
@@ -85,10 +85,10 @@ for(i in 1:length(sample_id)){
       dds<-DESeqDataSetFromTximport(txi,colData = dmtx,design = ~condition+batch)
       dds <- dds[ rowSums(counts(dds)) > 0, ] #remove rows with zero counts
       dds<-DESeq(dds)
-      ddsres<-results(dds,contrast = c('condition','Day.1','Day.5'))
-      ddspvalue<-as.data.frame(ddsres[,"padj"])
-      rownames(ddspvalue)<-rownames(ddsres)
-      de_res$deseq2[[i]]<-ddspvalue
+      # ddsres<-results(dds,contrast = c('condition','Day.1','Day.5'))
+      # ddspvalue<-as.data.frame(ddsres[,"padj"])
+      # rownames(ddspvalue)<-rownames(ddsres)
+      de_res$deseq2[[i]]<-dds
     }
   }
 }
@@ -103,6 +103,7 @@ for(i in 1:length(de_res)){
   deiname<-names(de_res)[[i]]
   ncomp<-length(dei)/length(batch) #number of components in the diagram
   comparison<-c(pvalue05=0.05,pvalue1=0.1,lNDE=200)
+  comparison_lfc<-c(lfc0=0,lfc1=1)
   if(deiname=="deseq2"){
     comparison<-c(comparison,outlier="outlier")
   }

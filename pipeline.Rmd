@@ -89,7 +89,7 @@ kmer_length=31
 libType='A'
 
 ## DE ##
-demethod='voom' #choose from 'voom', 'edgeR', 'DEseq2'
+demethod=c('voom') #list of  DE methods; choose from 'voom', 'edgeR', 'DEseq2'
 lowcountfilter=TRUE #if filter out low-count genes by CPM threshold
 threshCPM_byAvgColSum=1.5/10e6 #genes passing filter have averages of replicates > avgColsum*threshCPM_byAvgColSum; avgColSum = average of sums of counts of all samples; genes passing filter for each batch are calculated separately
 maxNDEG<-'all' #maximum number of genes in the output matrix
@@ -185,13 +185,14 @@ if(lowcountfilter==TRUE){
 savepath<-file.path(outDir,'de')
 if(!dir.exists(savepath)){dir.create(savepath)}
 
-for(c in contrasts){
-  deresults<-de(countsdfCPM_photo2_no20mW,c,demethod,multipletesting_method,nDEG = maxNDEG,FDR = FDR)
-  
-  # drawvenn(deresults,"/Users/Xinyi/rna-seq/data/n2a_prelim/de/venn_de",refcondition,c)
-  genelist(deresults,savepath,paste0(c),id2symb=id2symbol,convID=convID)
+for(dem in demethod){
+  for(c in contrasts){
+    deresults<-de(countsdfCPM_photo2_no20mW,c,dem,multipletesting_method,nDEG = maxNDEG,FDR = FDR)
+    
+    # drawvenn(deresults,"/Users/Xinyi/rna-seq/data/n2a_prelim/de/venn_de",refcondition,c)
+    genelist(deresults,savepath,paste0(c,dem),id2symb=id2symbol,convID=convID)
+  }
 }
-
 ```
 
 #Benchmark of pipelne & alternative choicees
@@ -239,7 +240,24 @@ percent error of transcript X = abs(estimated transcript count of X - actual cou
 ![](simAlign/results/quantError.png){ width=70% }
 
 ####Impacts of reference and (pseudo-)alignment methods on downstream DE analysis {#ref_align_deagreement}
-We compared the impacts on two DE algorithms: DEseq2 and limma-voom. To reproduce our results, run deAgreement.R (results will be stored in simAlign/results/n2a_asyn/deagreement and simAlign/results/n2a_asyn/deagreement_commonGene). This detects DE between two time points in our alpha-syn experiment (T2 and T7).
+We compared the impacts on two DE algorithms: DEseq2 and limma-voom. The comparison was performed for two datasets listed in below.
+
+#####Differentiating 3T3L1 pre-adipocytes
+To reproduce our results, run deAgreement.R in branch master (results will be stored in simAlign/results/3T3L1/deagreement and simAlign/results/3T3L1/deagreement_commonGene). This detects DE between Day 1 and Day 5 after initiation of differentiation.
+
+Two examples using DEseq2 and voom are shown below.
+
+![DEseq2; FDR<0.05](simAlign/results/3T3L1/deagreement/pvalue05deseq2.jpeg){ width=70% }
+![voom; FDR<0.05](simAlign/results/3T3L1/deagreement/pvalue05voom.jpeg){ width=70% }
+
+There are genes not shared by all combinations of reference and alignment method. So we also plotted the Venn diagrams with the same DE analysis results but only included genes shared by all combinations of {salmon,kallisto}x{ensembl, UCSC refSeq}. 
+
+![DEseq2; FDR<0.05](simAlign/results/3T3L1/deagreement_commonGene/pvalue05deseq2.jpeg){ width=70% }
+
+![voom; FDR<0.05](simAlign/results/3T3L1/deagreement_commonGene/pvalue05voom.jpeg){ width=70% }
+
+#####Neuro2A treated with alpha-synuclein fibril
+To reproduce our results, run deAgreement.R in branch n2a (results will be stored in simAlign/results/n2a_asyn/deagreement and simAlign/results/n2a_asyn/deagreement_commonGene). This detects DE between two time points in our alpha-syn experiment (T2 and T7).
 
 Two examples using DEseq2 and voom are shown below.
 
