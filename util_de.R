@@ -119,7 +119,7 @@ de<-function(counts,contrast, demethod,adjust_method,nDEG='all',FDR=0.05){
     vfit<-lmFit(v,design)
     vfit<-eBayes(vfit)
     print(colnames(vfit))
-    alldeg<-topTable(vfit,p.value = FDR,coef=paste0('conditionpattern',contrast),adjust.method = adjust_method)
+    alldeg<-topTable(vfit,p.value = FDR,number = Inf,coef=paste0('conditionpattern',contrast),adjust.method = adjust_method)
     alldeg<-alldeg[order(alldeg$adj.P.Val),]
     alldeg<-alldeg[1:min(nDEG,nrow(alldeg)),]
   }else if (demethod=='DEseq2'){

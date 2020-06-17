@@ -59,6 +59,7 @@ dataDir_fq=c("vector of paths to directories containing all fastq files") #if th
 fastq_extension=c('fastq','fq','fastq.gz','fq.gz')  #add fastq file extension if not already listed
 
 ## pseudo-alignment with salmon ##
+runSalmon=TRUE #option to reuse previous salmon results
 salmon_index=NA #if using pre-computed index, replace NA with path
 reference_fa=NA #if not using pre-computed index, replace NA with path to the fasta of reference transcriptome
 reftxpt='ensembl' #name of reference
@@ -130,7 +131,7 @@ for(fqi in dataDir_fq){
 ```
 
 ###Pseudo-alignment with salmon
-```{r, eval=(FALSE | runPipeline)}
+```{r, eval=(FALSE | (runPipeline & runSalmon))}
 
 setwd(outDir)
 if(is.na(salmon_index)){
