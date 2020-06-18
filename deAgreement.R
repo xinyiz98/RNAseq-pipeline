@@ -163,7 +163,7 @@ for(i in 1:length(de_res)){
         
         #draw venn diagram
         names(vennlist_input)<-c(names(vennlist))
-        venn.diagram(vennlist_input,filename = paste0('deagreement/',comparisonname,'lfc',lfc_thresh,deiname,".jpeg"),width = 4000,
+        venn.diagram(vennlist_input,filename = paste0('deagreement/',comparisonname,'lfc',lfc_thresh,deiname,batch[[j]],".jpeg"),width = 4000,
                      fill = c("cornflowerblue", "green", "yellow", "darkorchid1"),print.mode=c("raw","percent"))
         
         ##subset by commonGene
@@ -173,7 +173,7 @@ for(i in 1:length(de_res)){
         }
         #draw venn diagram after subset
         names(vennlist_input)<-c(names(vennlist))
-        venn.diagram(vennlist_input,filename = paste0('deagreement_commonGene/',comparisonname,'lfc',lfc_thresh,deiname,".jpeg"),width = 4000,
+        venn.diagram(vennlist_input,filename = paste0('deagreement_commonGene/',comparisonname,'lfc',lfc_thresh,deiname,batch[[j]],".jpeg"),width = 4000,
                      fill = c("cornflowerblue", "green", "yellow", "darkorchid1"),print.mode=c("raw","percent"))
         
       }
